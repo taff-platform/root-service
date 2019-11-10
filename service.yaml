@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: root-service
+  namespace: service
+spec:
+  selector:
+    matchLabels:
+      app: root-service
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: root-service
+    spec:
+      containers:
+        - name: root-service
+          image: gcr.io/taff-io/platform/root-service:2b35c15
+          env:
+            - name: CONSUL_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+          ports:
+            - containerPort: 31313
