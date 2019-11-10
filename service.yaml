@@ -16,10 +16,8 @@ spec:
     spec:
       containers:
         - name: root-service
-          image: gcr.io/taff-io/platform/root-service:2b35c15
+          image: gcr.io/taff-io/platform/root-service:1.0.1
           env:
-            - name: PORT
-              value: 31313
             - name: CONSUL_HOST
               valueFrom:
                 fieldRef:
